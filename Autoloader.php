@@ -14,7 +14,7 @@ class Autoloader
     {
         // Mise en place de l'autoload PHP
         spl_autoload_register([
-            __CLASS__, // Identifiction de la classe courante
+            __CLASS__, // Identification de la classe courante
             'autoload' // Appel de la fonction 'autoload'
         ]);
     }
@@ -38,7 +38,7 @@ class Autoloader
         $className = lcfirst($className);
 
         // On stocke le chemin absolu du fichier de la classe dans la variable $classFile
-        $classFile = __DIR__ . '/' . $className . '.class.php';
+        $classFile = __DIR__ . '/' . $className . '.php';
 
         // On vérifie si le fichier $classFile existe
         if(file_exists($classFile)) {

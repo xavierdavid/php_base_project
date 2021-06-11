@@ -2,18 +2,18 @@
 
 // Utilisation de l'Autoloader associé au namespace App
 use App\Autoloader;
-// Utilisation du MainController associé au namespace Controllers
-use App\Controllers\MainController; 
+// Utilisation du HomeController associé au namespace 'Home' Controllers
+use App\Controllers\Home\HomeController; 
 
 // Démarrage de la session
 session_start();
 
 // Chargement de l'autoloader
-require_once 'Autoloader.class.php';
+require_once 'Autoloader.php';
 Autoloader::register();
 
-// Instanciation du MainController
-$mainController = new MainController;
+// Instanciation du HomeController
+$homeController = new HomeController;
 
 // Définition d'une constante d'URL contenant le chemin absolu du site
 define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http")."://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
@@ -33,12 +33,12 @@ try {
 
     // On teste la valeur des éléments de l'url et on appelle les contrôleurs appropriés
     switch ($page) {
-        case "accueil": $mainController->home();
+        case "accueil": $homeController->home();
             break;
         case "compte" :
             // On teste le 2ème élément de l'url
             switch ($url[1]) {
-                case "profil" : $mainController->profile();
+                case "profil" : $homeController->profile();
                     break;
             }    
         break;  
@@ -49,7 +49,7 @@ try {
     
 } catch (Exception $e) {
     // Récupération des messages d'erreur du bloc try et gestion de l'affichage
-    $mainController->errorPage($e->getMessage()); 
+    $homeController->errorPage($e->getMessage()); 
 }
 
 

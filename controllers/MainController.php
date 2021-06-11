@@ -9,7 +9,7 @@ use App\Models\MainManager;
 /**
  * Contrôle la génération et l'affichage des différentes pages du site
  */
-class MainController
+abstract class MainController
 {
     private $mainManager;
 
@@ -23,12 +23,12 @@ class MainController
     }
 
     /**
-     * Permet de générer une vue à partir des données du template de base
+     * Permet de construire une page à partir des données et du template de base
      *
      * @param [type] $data
      * @return void
      */
-    private function generatePage($data)
+    protected function generatePage($data)
     {
         // Import du tableau de données de page et transformation en variables
         extract($data);
@@ -42,29 +42,11 @@ class MainController
     }
 
     /**
-     * Contrôle le paramétrage et l'affichage de la page d'accueil du site
-     *
-     * @return void
-     */
-    public function home()
-    {
-        // Définition d'un tableau associatif regroupant les données d'affichage de la page d'accueil du site
-        $data_page = [
-            "page_description" => "Description de la page d'accueil",
-            "page_title" => "Titre de la page d'accueil",
-            "view" => "views/home.view.php",
-            "template" => "views/common/template.php"
-        ];
-        // Affichage de la page à l'aide de la méthode generatePage à laquelle on envoie le tableau de données
-        $this->generatePage($data_page);
-    }
-
-    /**
      * Contrôle le paramétrage et l'affichage de la page d'erreur
      *
      * @return void
      */
-    public function errorPage($errorMessage)
+    protected function errorPage($errorMessage)
     {
         // Définition d'un tableau associatif regroupant les données d'affichage de la page d'erreur du site
         $data_page = [
