@@ -25,4 +25,16 @@ class Utility {
             "type" => $type
         ];
     }
+
+    /**
+     * Permet de générer une redirection vers une url spécifique
+     *
+     * @param string $url
+     * @return void
+     */
+    public function redirect(string $url): void
+    {
+        header("Location: $url");
+        exit();
+    }
 }
